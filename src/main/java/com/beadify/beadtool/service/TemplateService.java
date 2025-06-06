@@ -5,11 +5,26 @@ import com.beadify.beadtool.util.ImageProcessor;
 import com.beadify.beadtool.util.PaletteLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.util.concurrent.ConcurrentHashMap; 
 import java.util.List;
+import java.util.Map;
+
 
 @Service
 public class TemplateService {
+    private final Map<String, String[][]> templates = new ConcurrentHashMap<>(); 
+    public void saveTemplate(String id, String[][] grid){
+        templates.put(id, grid);
+    }
+
+    public String[][] getTemplate(String id){
+        return templates.get(id); 
+    }
+
+    public boolean hasTemplate(String id){
+        return templates.containsKey(id);
+
+    }
 
     // Load Mard palette from resources/palettes/mard.json
     private final List<BeadColor> palette = PaletteLoader.loadPalette("mard.json");
