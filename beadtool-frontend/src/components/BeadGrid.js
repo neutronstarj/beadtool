@@ -1,5 +1,8 @@
 import React from 'react'; 
 import palette from '../palettes/mard.json';
+import UIstyles from '../Statics/BeadGrid.css';
+
+
 const colorMap = {};
 palette.forEach(c => {
   const [r, g, b] = c.rgb;
